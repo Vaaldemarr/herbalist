@@ -1,0 +1,10 @@
+                <form method="post" action="{% url 'language_redirect' id=id url=url_text params=url_params %}">
+                    {% csrf_token %}
+                    <!-- <select id="language" name="language" class="language-selector" onchange="document.getElementById('language').submit();"> -->
+                    <input type="hidden" name="form_id" value="language_form">
+                    <select name="selected_language" class="language-selector" onchange="submit()" formaction="{% url 'language_redirect' id=id url=url_text params=url_params %}">
+                        <option value="en" {% if lang == 'en' %}selected{% endif %}>Eng</option>
+                        <option value="ru" {% if lang == 'ru' %}selected{% endif %}>Rus</option>
+                    </select>
+                </form>
+    

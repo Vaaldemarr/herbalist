@@ -1,0 +1,31 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/registration.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/login.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block content %}
+<div class="content_back">
+    <div class="div_profile_header">
+        <img src="{% static 'herbalist/images/leshy-1.png' %}" class="leshy" alt="">
+        <h1 class="profile_header">{% trans "Login" %}</h1>
+        <img src="" class="other_leshy" alt="">
+    </div>
+    <div class="form_block">
+        <form method="post">
+            {% csrf_token %}
+            <table class="table_profile">
+                {{ form.as_table }}
+            </table>
+            <!-- {{ form.as_p }} -->
+            <button type="submit" class="submit_button">{% trans "Login" %}</button>
+        </form>
+    </div>
+    <div id="signup_container"><a href="{% url 'signup' %}" id="signup">{% trans "Sign up" %}</a></div>
+</div>
+    <!-- <a href="{% url 'signup' %}">signup</a> -->
+{% endblock %}

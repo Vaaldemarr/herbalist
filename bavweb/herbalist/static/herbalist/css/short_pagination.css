@@ -1,0 +1,53 @@
+.page-btn {
+    /* border-style: solid; */
+    /* border-color: brown; */
+    /* background-color: aliceblue; */
+    /* margin-bottom: 15px; */
+    padding: 5px 15px;
+    /* border-radius: 5px; */
+    text-decoration: none;
+    background-size: cover;
+    background-size: 95%;
+}
+
+#btn_next {
+    background-image: url('../images/fast_forward_32.png');
+    /* width: 34px; */
+}
+
+#btn_last {
+    background-image: url('../images/last_32.png');
+}
+
+#btn_first {
+    background-image: url('../images/first_32.png');
+}
+
+#btn_rew {
+    background-image: url('../images/rew_32.png');
+}
+
+#btn_next_disabled {
+    background-image: url('../images/fast_forward_32.png');
+    filter: grayscale(100%);
+}
+
+#btn_last_disabled {
+    background-image: url('../images/last_32.png');
+    filter: grayscale(100%);
+}
+
+#btn_first_disabled {
+    background-image: url('../images/first_32.png');
+    filter: grayscale(100%);
+}
+
+#btn_rew_disabled {
+    background-image: url('../images/rew_32.png');
+    filter: grayscale(100%);
+}
+
+#btn_add_to_list {
+    background-image: url('../images/paper_clip_32.png');
+    width: 34px;
+}

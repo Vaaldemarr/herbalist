@@ -1,0 +1,52 @@
+.shelf-image {
+    display: flex;
+    align-items: center;
+}
+
+.plants_collections {
+    margin-left: 25px;
+    /* border-style: groove; */
+    border-radius: 15px;
+    background-color: rgba(222, 184, 135, 0.4);
+    padding: 5px 25px;
+    /* background-color: aqua; */
+    font: 38px RuslanDisplay;
+    color: rgb(60, 189, 215);
+    text-shadow: 
+        -1px -1px 2px rgb(76, 68, 133),  /* Левый верх */
+         2px -2px 1px rgb(139, 195, 219),   /* Правый верх */
+         -2px 2px 4px rgb(19, 77, 111),   /* Левый низ */
+         2px 2px 3px  rgb(9, 19, 65);    /* Правый низ */
+
+}
+
+#plant {
+    color: rgb(26, 154, 50);
+    text-shadow: 
+        -1px -1px 2px rgb(141, 207, 153),  /* Левый верх */
+         2px -2px 1px rgb(139, 219, 162),   /* Правый верх */
+         -2px 2px 4px rgb(19, 111, 43),   /* Левый низ */
+         2px 2px 3px  rgb(9, 65, 13);    /* Правый низ */
+}
+
+#compounds {
+    color: rgb(151, 31, 167);
+    text-shadow: 
+        -1px -1px 2px rgb(206, 141, 207),  /* Левый верх */
+         2px -2px 1px rgb(196, 139, 219),   /* Правый верх */
+         -2px 2px 4px rgb(111, 19, 111),   /* Левый низ */
+         2px 2px 3px  rgb(65, 9, 58);    /* Правый низ */
+}
+
+#activity {
+    color: rgb(202, 215, 60);
+    text-shadow: 
+        -1px -1px 2px rgb(207, 206, 141),  /* Левый верх */
+         2px -2px 1px rgb(94, 100, 23),   /* Правый верх */
+         -2px 2px 4px rgb(188, 188, 95),   /* Левый низ */
+         2px 2px 3px  rgb(65, 63, 9);    /* Правый низ */
+}
+
+#mixtures {
+    color: rgb(75, 69, 221);
+}

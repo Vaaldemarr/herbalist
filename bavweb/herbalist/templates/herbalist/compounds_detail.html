@@ -1,0 +1,136 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/shelf-caption.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/frame_background.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/buttons.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'herbalist/css/plant_detail.css' %}"> -->
+<link rel="stylesheet" href="{% static 'herbalist/css/list_page.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/item_detail.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/compounds_detail.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/pagination.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/short_pagination.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block shelf %}
+<div class="plants_collections" id="compounds">{{ captions.shelf_name }}</div>
+<div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        {% if message.tags == "error" or message.tags == "info" %}
+            <li class="error">{{ message }}</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+{% block content %}
+<div class="content_back">
+    <div class="detail_content">
+        <!-- Радиокнопки -->
+        <input type="radio" id="tab1" name="tabs" value="Tab1" {% if active_tab == "Tab1" %}checked{% endif %}>
+        <input type="radio" id="tab2" name="tabs" value="Tab2" {% if active_tab == "Tab2" %}checked{% endif %}>
+        <input type="radio" id="tab3" name="tabs" value="Tab3" {% if active_tab == "Tab3" %}checked{% endif %}>
+        
+        <!-- Метки для переключения вкладок -->
+        <div class="tab-labels">
+            <label for="tab1">{{ tab_captions.0 }}</label>
+            <label for="tab2">{{ tab_captions.1 }}</label>
+            <label for="tab3">{{ tab_captions.2 }}</label>
+        </div>
+
+        <!-- Контент вкладок -->
+        <div class="tab-content">
+            <div id="content1">
+                <div class="detail_content_texts">
+                    <h1 id="title">{{ captions.name }}</h1>
+                    <div id="table_extra">
+                        <table id="compound_info_table">
+                            <tr>
+                                {% if compounds.compounds_group %}
+                                <td><strong>{% trans "Compounds Group" %}: </strong></td>
+                                <td>
+                                    <a href="{% url 'compounds_group_detail' id=compounds.compounds_group.id %}">
+                                        {{ captions.group_name }}
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% if captions.group_text %}
+                            <tr>
+                                <td><strong>Compounds Group Text: </strong></td>
+                                <td>{{ captions.group_text }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if captions.note %}
+                            <tr>
+                                <td><strong>{% trans "Note" %}: </strong></td>
+                                <td>{{ captions.note }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if compounds.see %}
+                            <tr>
+                                <td><strong>{% trans "See" %}: </strong></td>
+                                <td>
+                                    <a href="{% url 'compounds_detail' id=compounds.see.id %}">
+                                        {{ captions.see }}
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% if captions.comment %}
+                            <tr>
+                                <td><strong>{% trans "Comment" %}: </strong></td>
+                                <td>{{ captions.comment }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if captions.rus_alt %}
+                            <tr>
+                                <td><strong>{% trans "Other name" %}: </strong></td>
+                                <td>{{ captions.rus_alt }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if captions.activity_extra %}
+                            <tr>
+                                <td><strong>{% trans "Activity Extra" %}: </strong></td>
+                                <td>{{ captions.activity_extra }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if captions.chemical_compound %}
+                            <tr>
+                                <td><strong>{% trans "Chemical Compound" %}: </strong></td>
+                                <td>{{ captions.chemical_compound }}</td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                        {% if tab1_extra|length > 0 %}
+                        <div id="extra_block">
+                            <ul>
+                                {% for extra_text in tab1_extra %}
+                                <li>{{ extra_text }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div id="content2">
+                <div class="detail_content_texts">
+                    {% include 'herbalist/item_tab.html' with url_text='activity_detail' my_q=q1 other_q=q2 pg=tab2 %}
+                </div>
+            </div>
+            <div id="content3">
+                <div class="detail_content_texts">
+                    {% include 'herbalist/item_tab.html' with url_text='plant_detail' my_q=q2 other_q=q1 pg=tab3 %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

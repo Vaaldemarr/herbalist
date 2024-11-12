@@ -1,0 +1,116 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/frame_background.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/buttons.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/list_page.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/pagination.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block content %}
+<div class="content_back">
+  <div class="search_block">
+    <form method="get" action="" class="search_form">
+      {% if query or cgroup %}
+      <input type="hidden" name="last_page" value="{{ last_page }}">
+      {% else %}
+      <input type="hidden" name="last_page" value="{{ page_obj.number }}">
+      {% endif %}
+      <input type="text" name="q" placeholder="{% trans 'Search compound' %}" value="{{ query|default_if_none:'' }}">
+      <input type="text" name="g" placeholder="{% trans 'Search group' %}" value="{{ cgroup|default_if_none:'' }}">
+      <button type="submit" class="submit_small" id="btn_search">&nbsp;</button>
+    </form>
+    <!-- Кнопка для сброса поиска -->
+    {% if query or cgroup %}
+    <form method="get" action="">
+      <!-- Передаем текущую страницу, чтобы вернуться на нее после сброса поиска -->
+      <input type="hidden" name="page1" value="{{ last_page|default_if_none:page_obj.number }}">
+      <button type="submit" name="reset" value="1" class="submit_small" id="btn_cancel">&nbsp;</button>
+    </form>
+    {% endif %}
+  </div>
+  <table class="catalog_table">
+    <thead>
+      <tr>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "See" %}</th>
+        <th>{% trans "Compounds Group" %}</th>
+        <!-- <th>Compounds Group Text</th> -->
+        <!-- <th>Note</th> -->
+        <!-- <th>Comment</th> -->
+        <th>{% trans "Other name" %}</th>
+        <!-- <th>Biological Activity Extra</th> -->
+        <!-- <th>Compound</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for compound in compounds %}
+        <tr>
+          <td>
+            <a href="{% url 'compounds_detail' id=compound.id %}">
+              {% if compound.name|length > 55 %}
+              {{ compound.name|slice:":52" }}...
+              {% else %}
+              {{ compound.name }}
+              {% endif %}
+            </a>
+          </td>
+          <td>
+            {% if compound.see %}
+              {% if query or cgroup %}
+              <a href="?q={{ compound.see_long }}&g={{ cgroup }}&last_page={{ last_page }}&page={{ 1 }}">
+              {% else %}
+              <a href="?q={{ compound.see_long }}&g={{ cgroup }}&last_page={{ page_obj.number }}&page={{ 1 }}">
+              {% endif %}
+              {{ compound.see }}</a>
+            {% else %}
+            &nbsp;
+            {% endif %}
+          </td>
+          <td>
+            {% if compound.compounds_group %}
+              {% if query or cgroup %}
+              <a href="?q={{ query }}&g={{ compound.compounds_group }}&last_page={{ last_page }}&page={{ 1 }}">
+              {% else %}
+              <a href="?q={{ query }}&g={{ compound.compounds_group }}&last_page={{ page_obj.number }}&page={{ 1 }}">
+              {% endif %}
+              {% if compound.compounds_group|length > 55 %}
+              {{ compound.compounds_group|slice:":52" }}...
+              {% else %}
+              {{ compound.compounds_group }}
+              {% endif %}
+              </a>
+            {% else %}
+            &nbsp;
+            {% endif %}
+          </td>
+          <!-- <td>{{ compound.compounds_group_text }}</td> -->
+          <!-- <td>{{ compound.note }}</td> -->
+          <!-- <td>{{ compound.comment }}</td> -->
+          <td>
+            {% if compound.rus_alt|length > 55 %}
+            {{ compound.rus_alt|slice:":52" }}...
+            {% else %}
+            {{ compound.alt }}
+            {% endif %}
+          </td>
+          <!-- <td>{{ compound.biological_activity_extra }}</td> -->
+          <!-- <td>
+            {% if compound.chemical_compound %}
+            {{ compound.chemical_compound.name }}
+            {% else %}
+            &nbsp;
+            {% endif %}
+          </td> -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination_bottom">
+    {% include 'herbalist/pagination.html' %}
+  </div>
+</div>
+{% endblock %}

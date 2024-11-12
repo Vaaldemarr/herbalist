@@ -1,0 +1,65 @@
+.user_settings_block {
+    display: flex;
+    flex-direction: row;
+    /* background-color: aquamarine; */
+}
+
+.user_extensions {
+    margin-left: auto;
+}
+
+.user_block {
+    border-style: none;
+    /* padding-left: 10px; */
+    padding-right: 15px;
+}
+
+.settings_block {
+    border-style: none;
+    border-left-style: groove;
+    padding-left: 10px;
+}
+
+.leshy:hover {
+    opacity: 0;
+}
+
+.leshy:hover ~ img {
+    content: url('../images/Leshy-6.png');
+  }
+
+.submit_button {
+    display: block;
+    margin: 10px auto 0px auto;
+  }
+
+
+.bag_container {
+    position: relative; /* Для позиционирования caption относительно контейнера */
+    display: inline-block;
+}
+
+.mixtures_bag:hover {
+    content: url('../images/orange-bag-4.png');
+}
+
+#bag_caption {
+    font: 24pt RuslanDisplay;
+    display: none; /* Скрываем caption по умолчанию */
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.4); /* Фон для видимости текста */
+    color: #fff;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 4px;
+    z-index: 10; /* Устанавливаем z-index, чтобы элемент был поверх родителя */
+    /* transition: opacity 0.3s ease, visibility 0.3s ease; */
+}
+
+.bag_container:hover #bag_caption {
+    display: block; /* Показываем caption при наведении на .bag_container */
+}

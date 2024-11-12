@@ -1,0 +1,41 @@
+{% load i18n %}
+<div class="pagination_go">
+  <!-- Пагинация -->
+  <div class="pagination">
+    <!-- <span class="step-links"> -->
+    <div class="step-links">
+      <!-- Ссылка на первую страницу -->
+      {% if page_obj.has_previous %}
+        <a href="?q={{ query }}&g={{ cgroup }}&family={{ family_query }}&last_page={{ last_page }}&page=1" class="page-link">&laquo; {% trans "First" %}</a>
+      {% endif %}
+
+      <!-- Показ страниц назад, если возможно -->
+      {% for page_num in page_obj.paginator.page_range %}
+        {% if page_num >= page_obj.number|add:links_buttons_left and page_num <= page_obj.number|add:links_buttons %}
+          {% if page_num == page_obj.number %}
+            <span class="current-page">{{ page_num }}</span>
+          {% else %}
+            <a href="?q={{ query }}&g={{ cgroup }}&family={{ family_query }}&last_page={{ last_page }}&page={{ page_num }}" class="page-link">{{ page_num }}</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      <!-- Ссылка на последнюю страницу -->
+      {% if page_obj.has_next %}
+        <a href="?q={{ query }}&g={{ cgroup }}&family={{ family_query }}&last_page={{ last_page }}&page={{ page_obj.paginator.num_pages }}" class="page-link">{% trans "Last" %} &raquo;</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Поле для перехода на страницу -->
+  <form method="get" action="" id="form_go">
+    <input type="hidden" name="q" value="{{ query|default_if_none:'' }}">
+    <input type="hidden" name="g" value="{{ cgroup|default_if_none:'' }}">
+    <input type="hidden" name="family" value="{{ family_query|default_if_none:'' }}">
+    <input type="hidden" name="last_page" value="{{ last_page|default_if_none:1 }}">
+    <label for="page">{% trans "Go to page" %}:</label>
+    <input type="number" id="page" name="page" min="1" max="{{ page_obj.paginator.num_pages }}" required>
+    <button type="submit" class="submit_small" id="btn_page">&nbsp;</button>
+  </form>
+      
+</div>

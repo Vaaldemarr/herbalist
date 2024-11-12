@@ -1,0 +1,19 @@
+#welcome {
+    display: flex;
+    flex-direction: column;
+}
+
+#description {
+    font-size: 1.4em;
+}
+
+#user_block {
+    text-align: center;
+    /* background-color: aqua; */
+    margin-bottom: 10px;
+}
+
+.submit_button {
+    border-style: solid;
+}
+

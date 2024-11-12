@@ -1,0 +1,13 @@
+
+#id_password {
+    visibility: hidden;
+}
+
+.form-data {
+    /* border-style: double;
+    border-color: blueviolet; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

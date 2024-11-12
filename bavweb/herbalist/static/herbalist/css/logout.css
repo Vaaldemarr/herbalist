@@ -1,0 +1,12 @@
+.leshy:hover {
+    opacity: 0;
+}
+
+.leshy:hover ~ img {
+    content: url('../images/Leshy-8.png');
+  }
+
+  .div_login > a {
+    border-style: solid;
+    /* border-color: aquamarine; */
+  }

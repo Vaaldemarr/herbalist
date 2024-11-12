@@ -1,0 +1,110 @@
+.mixtures_block {
+    display: flex;
+    border-style: double;
+    border-color: brown;
+    flex-grow: 1;
+}
+
+.mixtures {
+    display: flex;
+    /* Первый элемент занимает 1 часть */
+    flex: 1; 
+    /* border-color: aqua;
+    border-style: double; */
+    /* background-color: aqua; */
+    /* align-items: flex-end; */
+    flex-direction: column;
+    justify-content: space-between; /* Равномерное распределение */
+
+}
+
+.form_create {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form_mixtures {
+    flex-grow: 1;
+    align-self: center;
+}
+
+.pagination_bottom {
+    /* display: inline-block; */
+    /* margin-top: auto;  */
+    /* align-items: flex-end; */
+    display: flex;
+}
+
+.form-container {
+    display: flex;
+    width: 100%;
+}
+
+.form-container > input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+#mixture_name {
+    flex: 1; /* Первый элемент занимает 1 часть */
+}
+
+.plants {
+    flex: 2; /* Второй элемент занимает 2 части */
+    /* border-color: blue; */
+    /* border-style: double; */
+    display: flex;
+    flex-direction: column;
+}
+
+.form_plants {
+    margin-left: 10px;
+    flex-grow: 1;
+    /* background-color: cadetblue; */
+    /* justify-content: center; */
+    align-self: center;
+}
+
+.two_tables {
+    margin: 0px;
+    padding: 0px;
+    align-self: center;
+    justify-content: center;
+    height: 100%;
+    /* background-color: blueviolet; */
+}
+
+.mixture_detail_link {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 32px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.mixture_detail_link div {
+    font-size: 1.4em;
+    /* font-style: italic; */
+    font-weight: 600;
+}
+.cur_mixture_name {
+    font-size: 18;
+}
+
+.mixture_detail_link:hover {
+    background-color: rgb(244, 224, 167);
+}
+
+.mixture_detail_link:hover > .mixture_book{
+    content: url('../images/subject_32.png');
+}
+
+#selected_mixture {
+    background-color: blue;
+}
+
+#selected_mixture > a{
+    color: white;
+}

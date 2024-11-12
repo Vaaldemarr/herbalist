@@ -1,0 +1,96 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ lng.language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbalist</title>
+    <link rel="stylesheet" href="{% static 'herbalist/css/base.css' %}">
+    {% block substyle %}
+    {% endblock %}
+</head>
+<body>
+    <header class="header">
+        <!-- Панель навигации -->
+        <nav class="navbar">
+            <div class="navbar-left">&nbsp;</div>
+            <ul class="navbar-list">
+                <li class="nav-item {% if active_page == 'plants' %}active{% endif %}">
+                    <a href="{% url 'plants' %}" class="nav-link" id="link_plants">
+                        <span class="nav-text">{% trans "Plants" %}</span>
+                        <!-- <img src="{% static 'herbalist/images/icon-placeholder.png' %}" class="nav-icon" alt=""> -->
+                        <img src="" class="nav-icon" alt="">
+                    </a>
+                </li>
+                <li class="nav-item {% if active_page == 'families' %}active{% endif %}">
+                    <a href="{% url 'families' %}" class="nav-link" id="link_families">
+                        <span class="nav-text">{% trans "Families" %}</span>
+                        <!-- <img src="{% static 'herbalist/images/icon-placeholder.png' %}" class="nav-icon" alt=""> -->
+                        <img src="" class="nav-icon" alt="">
+                    </a>
+                </li>
+                <li class="nav-item {% if active_page == 'compounds' %}active{% endif %}">
+                    <a href="{% url 'compounds' %}" class="nav-link" id="link_compounds">
+                        <span class="nav-text">{% trans "Compounds" %}</span>
+                        <!-- <img src="{% static 'herbalist/images/icon-placeholder.png' %}" class="nav-icon" alt=""> -->
+                        <img src="" class="nav-icon" alt="">
+                    </a>
+                </li>
+                <li class="nav-item {% if active_page == 'compounds-groups' %}active{% endif %}">
+                    <a href="{% url 'compounds-groups' %}" class="nav-link" id="link_groups">
+                        <span class="nav-text">{% trans "Groups" %}</span>
+                        <!-- <img src="{% static 'herbalist/images/icon-placeholder.png' %}" class="nav-icon" alt=""> -->
+                        <img src="" class="nav-icon" alt="">
+                    </a>
+                </li>
+                <li class="nav-item {% if active_page == 'activities' %}active{% endif %}">
+                    <a href="{% url 'activities' %}" class="nav-link" id="link_activities">
+                        <span class="nav-text">{% trans "Activities" %}</span>
+                        <!-- <img src="{% static 'herbalist/images/icon-placeholder.png' %}" class="nav-icon" alt=""> -->
+                        <img src="" class="nav-icon" alt="">
+                    </a>
+                </li>
+            </ul>
+            <!-- <div class="navbar-right"></div> -->
+        </nav>
+
+        <!-- Панель настроек -->
+        <div class="settings-panel">
+            {% block select_language %}{% endblock %}
+            <div class="settings-button">
+                <a href="{% url 'profile' %}"><img src="{% static 'herbalist/images/settings-7.png' %}" alt="Settings" class = "settings-icon"></a>
+            </div>
+        </div>
+
+    </header>
+    <div class="shelf-image">{% block shelf %}{% endblock %}</div>
+    <main>
+        <div class="back-images">
+            <img src="{% static 'herbalist/images/left-image.jpg' %}" alt="">
+            <div class="back-image-center">
+                <div class="frame-top">
+                    <img src="{% static 'herbalist/images/frame-top-left-image.jpg' %}" alt="" class="frame-side">
+                    <img src="{% static 'herbalist/images/frame-top-center-image.jpg' %}" alt="" class="frame-center">
+                    <img src="{% static 'herbalist/images/frame-top-right-image.jpg' %}" alt="" class="frame-side">
+                </div>
+                <div class="frame-mid">
+                    <img src="{% static 'herbalist/images/frame-mid-left-image.jpg' %}" alt="" class="frame-side">
+                    <!--  Вставка контента страницы -->
+                    <div class="frame-center">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
+                    <img src="{% static 'herbalist/images/frame-mid-right-image.jpg' %}" alt="" class="frame-side">
+                </div>
+                <div class="frame-bottom">
+                    <img src="{% static 'herbalist/images/frame-bottom-left-image.jpg' %}" alt="" class="frame-side">
+                    <img src="{% static 'herbalist/images/frame-bottom-center-image.jpg' %}" alt="" class="frame-center">
+                    <img src="{% static 'herbalist/images/frame-bottom-right-image.jpg' %}" alt="" class="frame-side">
+                </div>
+            </div>
+            <img src="{% static 'herbalist/images/right-image.jpg' %}" alt="">
+        </div>
+    </main>
+</body>
+</html>

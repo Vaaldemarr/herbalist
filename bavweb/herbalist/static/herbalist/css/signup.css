@@ -1,0 +1,7 @@
+.leshy:hover {
+    opacity: 0;
+}
+
+.leshy:hover ~ img {
+    content: url('../images/Leshy-4.png');
+  }

@@ -1,0 +1,55 @@
+.submit_button {
+    margin-top: 10px;
+    font-size: 1.2em;
+    text-align: left;
+    /* height: 30px; */
+    padding: 10px 20px;
+    color: chocolate;
+    background-color: burlywood;
+    border-color: brown;
+    /* border-style: double;
+    border-color: blue; */
+    border-radius: 5px;
+}
+
+#btn_search {
+    background-image: url('../images/binoculars_32.png');
+    width: 34px;
+}
+
+#btn_cancel {
+    background-image: url('../images/close_b_32.png');
+    width: 34px;
+}
+
+#btn_page {
+    background-image: url('../images/next_32.png');
+    width: 34px;
+}
+
+.submit_small {
+    margin-right: 2px;
+    /* margin-top: 10px; */
+    /* padding: 10px 20px; */
+    /* font-size: 1.2em; */
+    text-align: left;
+    color: chocolate;
+    background-color: burlywood;
+    border-color: brown;
+    border-radius: 5px;
+    /* background-image: url('../images/magnifier-16.png'); */
+    background-size: 90% 90%;
+    background-position: center;
+    /* background-size: cover; Покрываем весь фон */
+    background-repeat: no-repeat; /* Отключаем повторение */
+    background-position: center; /* Центрируем изображение */
+}
+
+.submit_button:hover, .submit_small:hover {
+    background-color: #d99c4d;
+    text-shadow: 
+        -1px -1px 2px rgb(207, 190, 94),  /* Левый верх */
+         2px -2px 1px rgb(111, 79, 19),   /* Правый верх */
+         -2px 2px 4px rgb(111, 60, 19),   /* Левый низ */
+         2px 2px 3px  rgb(65, 24, 9);    /* Правый низ */
+}

@@ -1,0 +1,39 @@
+#title {
+    /* border-style: dotted; */
+    margin: 2px 5px;
+}
+
+#compound_info_table {
+    /* background-color: brown; */
+    flex: 2;
+    height: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+#compound_info_table td:first-child {
+    /* border-color: aqua; */
+    /* border-right-style: dotted; */
+    white-space: nowrap;     /* Запрет переноса текста в первой колонке */
+    width: 1%;               /* Ширина по содержимому */
+    padding-right: 10px;
+}
+
+#compound_info_table td:last-child {
+    width: auto;             /* Занимает оставшееся пространство */
+}
+
+#table_extra {
+    /* background-color: aquamarine; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#extra_block {
+    /* background-color: aqua; */
+    /* width: 30%; */
+    flex: 1;
+    margin-left: auto; /* Выравниваем правый элемент по правому краю */
+}

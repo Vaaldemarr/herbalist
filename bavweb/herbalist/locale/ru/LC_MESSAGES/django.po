@@ -1,0 +1,270 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-10 18:21+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: .\herbalist\templates\herbalist\activities.html:22 .\herbalist\views.py:633
+#: .\herbalist\views.py:1089 .\herbalist\views.py:1962
+msgid "Search activity"
+msgstr "Поиск активности"
+
+#: .\herbalist\templates\herbalist\activities.html:37
+#: .\herbalist\templates\herbalist\compounds.html:38
+#: .\herbalist\templates\herbalist\families.html:37
+#: .\herbalist\templates\herbalist\plant_detail.html:53
+#: .\herbalist\templates\herbalist\plants.html:39
+msgid "Name"
+msgstr "Наименование"
+
+#: .\herbalist\templates\herbalist\base.html:21
+#: .\herbalist\templates\herbalist\family_detail.html:17
+msgid "Plants"
+msgstr "Растения"
+
+#: .\herbalist\templates\herbalist\base.html:28
+msgid "Families"
+msgstr "Семейства"
+
+#: .\herbalist\templates\herbalist\base.html:35
+#: .\herbalist\templates\herbalist\compounds_group_detail.html:17
+msgid "Compounds"
+msgstr "Соединения"
+
+#: .\herbalist\templates\herbalist\base.html:42
+msgid "Groups"
+msgstr "Группы"
+
+#: .\herbalist\templates\herbalist\base.html:49
+msgid "Activities"
+msgstr "Активность"
+
+#: .\herbalist\templates\herbalist\compounds.html:22 .\herbalist\views.py:638
+#: .\herbalist\views.py:1472 .\herbalist\views.py:1967
+msgid "Search compound"
+msgstr "Поиск соединения"
+
+#: .\herbalist\templates\herbalist\compounds.html:23
+#: .\herbalist\templates\herbalist\compounds_groups.html:22
+msgid "Search group"
+msgstr "Поиск группы"
+
+#: .\herbalist\templates\herbalist\compounds.html:39
+#: .\herbalist\templates\herbalist\compounds_detail.html:78
+msgid "See"
+msgstr "Смотри"
+
+#: .\herbalist\templates\herbalist\compounds.html:40
+#: .\herbalist\templates\herbalist\compounds_detail.html:56
+msgid "Compounds Group"
+msgstr "Группа соединений"
+
+#: .\herbalist\templates\herbalist\compounds.html:44
+#: .\herbalist\templates\herbalist\compounds_detail.html:94
+msgid "Other name"
+msgstr "Другое имя"
+
+#: .\herbalist\templates\herbalist\compounds_detail.html:72
+msgid "Note"
+msgstr "Заметки"
+
+#: .\herbalist\templates\herbalist\compounds_detail.html:88
+msgid "Comment"
+msgstr "Комментарий"
+
+#: .\herbalist\templates\herbalist\compounds_detail.html:100
+msgid "Activity Extra"
+msgstr "Активность доп."
+
+#: .\herbalist\templates\herbalist\compounds_detail.html:106
+msgid "Chemical Compound"
+msgstr "Химическое соединение"
+
+#: .\herbalist\templates\herbalist\families.html:22
+#: .\herbalist\templates\herbalist\plants.html:24
+msgid "Search family"
+msgstr "Поиск семейства"
+
+#: .\herbalist\templates\herbalist\index.html:17
+msgid "Welcome to the Herbalist database!"
+msgstr "Добро пожаловать в базу данных Травник!"
+
+#: .\herbalist\templates\herbalist\index.html:19
+msgid ""
+"Here is a collection of about 8,000 medicinal plants grouped by chemical "
+"compounds and their biological activity."
+msgstr ""
+"Здесь собранна коллекция из около 8000 целебных растений сгруппированных по химическим "
+"соединениям и их биологической активности."
+
+#: .\herbalist\templates\herbalist\index.html:30
+#: .\herbalist\templates\registration\login.html:28
+#: .\herbalist\templates\registration\signup.html:15
+msgid "Sign up"
+msgstr "Регистрация"
+
+#: .\herbalist\templates\herbalist\item_tab.html:30
+#: .\herbalist\templates\herbalist\item_tab.html:62
+#: .\herbalist\templates\herbalist\mixture_tab.html:48
+#: .\herbalist\templates\herbalist\mixture_tab.html:97
+#: .\herbalist\templates\herbalist\mixtures.html:73
+#: .\herbalist\templates\herbalist\mixtures.html:115
+msgid "Empty"
+msgstr "Пусто"
+
+#: .\herbalist\templates\herbalist\mixtures.html:18
+msgid "Collections of plants"
+msgstr "Сборы растений"
+
+#: .\herbalist\templates\herbalist\mixtures.html:39
+msgid "Create"
+msgstr "Создать"
+
+#: .\herbalist\templates\herbalist\mixtures.html:46
+msgid "Collection"
+msgstr "Сбор"
+
+#: .\herbalist\templates\herbalist\mixtures.html:81
+msgid "Plant"
+msgstr "Растение"
+
+#: .\herbalist\templates\herbalist\pagination.html:9
+msgid "First"
+msgstr "Начало"
+
+#: .\herbalist\templates\herbalist\pagination.html:25
+msgid "Last"
+msgstr "Конец"
+
+#: .\herbalist\templates\herbalist\pagination.html:36
+msgid "Go to page"
+msgstr "Перейти"
+
+#: .\herbalist\templates\herbalist\plant_detail.html:55
+#: .\herbalist\templates\herbalist\plants.html:43
+msgid "Latin name"
+msgstr "Латинское наименование"
+
+#: .\herbalist\templates\herbalist\plant_detail.html:56
+#: .\herbalist\templates\herbalist\plants.html:44
+msgid "Family"
+msgstr "Семейство"
+
+#: .\herbalist\templates\herbalist\plants.html:22 .\herbalist\views.py:1094
+#: .\herbalist\views.py:1477 .\herbalist\views.py:1972
+msgid "Search plant"
+msgstr "Поиск растения"
+
+#: .\herbalist\templates\registration\edit_profile.html:15
+msgid "Edit profile"
+msgstr "Редактировать профиль"
+
+#: .\herbalist\templates\registration\edit_profile.html:25
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: .\herbalist\templates\registration\edit_profile.html:31
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: .\herbalist\templates\registration\logged_out1.html:15
+#: .\herbalist\templates\registration\profile.html:35
+msgid "Logout"
+msgstr "Выход"
+
+#: .\herbalist\templates\registration\logged_out1.html:18
+msgid "You have successfully logged out."
+msgstr "Вы успешно вышли из системы."
+
+#: .\herbalist\templates\registration\logged_out1.html:20
+msgid "Login again"
+msgstr "Авторизоваться снова"
+
+#: .\herbalist\templates\registration\login.html:15
+#: .\herbalist\templates\registration\login.html:25
+msgid "Login"
+msgstr "Авторизация"
+
+#: .\herbalist\templates\registration\password_change_done1.html:9
+msgid "Password Changed Successfully"
+msgstr "Пароль успешно изменен"
+
+#: .\herbalist\templates\registration\password_change_done1.html:10
+msgid "Your password has been updated."
+msgstr "Ваш пароль был обновлен."
+
+#: .\herbalist\templates\registration\password_change_done1.html:11
+#: .\herbalist\templates\registration\password_change_form1.html:23
+msgid "Back to Profile"
+msgstr "Назад в профиль"
+
+#: .\herbalist\templates\registration\password_change_form1.html:15
+msgid "Change Your Password"
+msgstr "Изменение Вашего пароля"
+
+#: .\herbalist\templates\registration\password_change_form1.html:20
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+#: .\herbalist\templates\registration\profile.html:16
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: .\herbalist\templates\registration\profile.html:21
+msgid "Collections"
+msgstr "Сборы"
+
+#: .\herbalist\templates\registration\profile.html:28
+msgid "First Name"
+msgstr "Имя"
+
+#: .\herbalist\templates\registration\profile.html:29
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: .\herbalist\templates\registration\profile.html:30
+msgid "Email"
+msgstr "Эл. почта"
+
+#: .\herbalist\templates\registration\profile.html:31
+msgid "Date Joined"
+msgstr "Дата регистрации"
+
+#: .\herbalist\templates\registration\profile.html:55
+msgid "Save Settings"
+msgstr "Сохранить настройки"
+
+#: .\herbalist\templates\registration\signup.html:22
+msgid "Register"
+msgstr "Регистрация"
+
+#: .\herbalist\users.py:66
+msgid "Language"
+msgstr "Язык"
+
+#: .\herbalist\users.py:67
+msgid "Age"
+msgstr "Возраст"
+
+#: .\herbalist\users.py:68
+msgid "Items per page"
+msgstr "Строк на странице"
+
+#: .\herbalist\users.py:69
+msgid "Pagination buttons"
+msgstr "Кнопок навигации"

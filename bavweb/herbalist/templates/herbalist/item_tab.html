@@ -1,0 +1,132 @@
+{% load static %}
+{% load i18n %}
+<div class="two_tables">
+    <div class="left_table">
+        <table class="catalog_table">
+          {% for pg_item in pg.tab_page_obj %}
+          <tr>
+              <td>
+                {% with url_name=url_text %}
+                  <a href="{% url url_name id=pg_item.id %}">{{ pg_item.display_name }}</a>
+                {% endwith %}
+              </td>
+              {% if pg.tab_page_obj.has_extra_data %}
+              <td>
+                {% if pg_item.extra_data %}
+                {{ pg_item.extra_data }}
+                {% endif %}
+              </td>
+              {% endif %}
+              {% if user.is_authenticated and pg.is_plant %}
+              <td class="td_mixtures">
+                <a href="{% url 'mixtures_list' %}?plant_id={{ pg_item.id }}" class="img_mixtures">
+                  <img src="{% static 'herbalist/images/paper_clip_32.png' %}" alt="">
+                </a>
+              </td>
+              {% endif %}
+          </tr>
+          {% empty %}
+          <tr>
+              <td>{% trans "Empty" %}</td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+    {% if pg.tab_page_obj2 %}
+    <div class="right_table">
+        <table class="catalog_table">
+          {% for pg_item in pg.tab_page_obj2 %}
+          <tr>
+            <td>
+              {% with url_name=url_text %}
+                <a href="{% url url_name id=pg_item.id %}">{{ pg_item.display_name }}</a>
+              {% endwith %}
+            </td>
+            {% if pg.tab_page_obj2.has_extra_data %}
+            <td>
+              {% if pg_item.extra_data %}
+              {{ pg_item.extra_data }}
+              {% endif %}
+            </td>
+            {% endif %}
+            {% if user.is_authenticated and pg.is_plant %}
+            <td class="td_mixtures">
+              <a href="{% url 'mixtures_list' %}?plant_id={{ pg_item.id }}" class="img_mixtures">
+                <img src="{% static 'herbalist/images/paper_clip_32.png' %}" alt="">
+              </a>
+            </td>
+            {% endif %}
+          </tr>
+          {% empty %}
+          <tr>
+              <td>{% trans "Empty" %}</td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+<div class="pagination_go">
+  <div class="search_block">
+    <form method="get" action="" class="search_form">
+      {% if query_name or cgroup %}
+      <input type="hidden" name="last_page" value="{{ last_page }}">
+      {% else %}
+      <input type="hidden" name="last_page" value="{{ page_obj.number }}">
+      {% endif %}
+      <input type="hidden" name="active_tab" value="{{ pg.active_tab }}">
+      <input type="hidden" name="{{ other_q.name }}" placeholder="{{ other_q.prompt }}" value="{{ other_q.text|default_if_none:'' }}">
+      <input type="hidden" name="my_q" value="{{ my_q.name }}">
+      <input type="text" name="{{ my_q.name }}" placeholder="{{ my_q.prompt }}" value="{{ my_q.text|default_if_none:'' }}">
+      <button type="submit" class="submit_small" id="btn_search">&nbsp;</button>
+    </form>
+    <!-- Кнопка для сброса поиска -->
+    {% if my_q.text %}
+    <form method="get" action="">
+      <input type="hidden" name="active_tab" value="{{ pg.active_tab }}">
+      <input type="hidden" name="{{ other_q.name }}" placeholder="{{ other_q.prompt }}" value="{{ other_q.text|default_if_none:'' }}">
+      <button type="submit" name="reset_q" value="{{ pg.cur_page }}" class="submit_small" id="btn_cancel">&nbsp;</button>
+    </form>
+    {% endif %}
+  </div>
+  
+  <div class="pagination">
+    <div class="step-links">
+      {% if pg.tab_page_obj.has_previous %}
+        {% with previous_page_number=pg.tab_page_obj.previous_page_number|add:-1 %}
+        <a href="?{{ pg.cur_page }}=1&{{ pg.other_page }}={{ pg.other_page_num }}&active_tab={{ pg.active_tab }}&{{ my_q.name }}={{ my_q.text }}&{{ other_q.name }}={{ other_q.text }}" class="page-btn" id="btn_first">&nbsp;</a>
+        <a href="?{{ pg.cur_page }}={{ previous_page_number }}&{{ pg.other_page }}={{ pg.other_page_num }}&active_tab={{ pg.active_tab }}&{{ my_q.name }}={{ my_q.text }}&{{ other_q.name }}={{ other_q.text }}" class="page-btn" id="btn_rew">&nbsp;</a>
+        {% endwith %}
+      {% else %}
+        <a href="#" class="page-btn" id="btn_first_disabled" style="filter: grayscale(100%);">&nbsp;</a>
+        <a href="#" class="page-btn" id="btn_rew_disabled">&nbsp;</a>
+      {% endif %}
+      <span class="current-page">
+        {{ pg.tab_page_obj.number }}
+        {% if pg.tab_page_obj.number < pg.tab_page_obj.paginator.num_pages %}
+        , {{ pg.tab_page_obj.number|add:1 }}
+        {% endif %}
+         of {{ pg.tab_page_obj.paginator.num_pages }}</span>
+      {% if pg.tab_page_obj.has_next %}
+        {% with next_page_number=pg.tab_page_obj.next_page_number|add:1 %}
+        <a href="?{{ pg.cur_page }}={{ next_page_number }}&{{ pg.other_page }}={{ pg.other_page_num }}&active_tab={{ pg.active_tab }}&{{ my_q.name }}={{ my_q.text }}&{{ other_q.name }}={{ other_q.text }}" class="page-btn" id="btn_next">&nbsp;</a>
+        <a href="?{{ pg.cur_page }}={{ pg.tab_page_obj.paginator.num_pages }}&{{ pg.other_page }}={{ pg.other_page_num }}&active_tab={{ pg.active_tab }}&{{ my_q.name }}={{ my_q.text }}&{{ other_q.name }}={{ other_q.text }}" class="page-btn" id="btn_last">&nbsp;</a>
+        {% endwith %}
+      {% else %}
+      <a href="#" class="page-btn" id="btn_next_disabled">&nbsp;</a>
+      <a href="#" class="page-btn" id="btn_last_disabled">&nbsp;</a>
+    {% endif %}
+    </div>
+  </div>
+
+  <form method="get" action="" id="form_go">
+    <input type="hidden" name="{{ pg.other_page }}" value="{{ pg.other_page_num }}">
+    <input type="hidden" name="active_tab" value="{{ pg.active_tab }}">
+    <input type="hidden" name="{{ my_q.name }}" value="{{ my_q.text }}">
+    <input type="hidden" name="{{ other_q.name }}" value="{{ other_q.text }}">
+    <input type="number" id="page" name="{{ pg.cur_page }}" min="1" max="{{ pg.tab_page_obj.paginator.num_pages }}" required>
+    <button type="submit" class="submit_small" id="btn_page">&nbsp;</button>
+  </form>
+</div>
+

@@ -1,0 +1,79 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/frame_background.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/buttons.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/list_page.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/pagination.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block content %}
+<div class="content_back">
+  <div class="search_block">
+    <form method="get" action="" class="search_form">
+      {% if query or family_query %}
+      <input type="hidden" name="last_page" value="{{ last_page }}">
+      {% else %}
+      <input type="hidden" name="last_page" value="{{ page_obj.number }}">
+      {% endif %}
+      <input type="text" name="q" placeholder="{% trans 'Search plant' %}" value="{{ query|default_if_none:'' }}">
+      <!-- Поле для поиска по family -->
+      <input type="text" name="family" placeholder="{% trans 'Search family' %}" value="{{ family_query|default_if_none:'' }}">
+      <button type="submit" class="submit_small" id="btn_search">&nbsp;</button>
+    </form>
+    <!-- Кнопка для сброса поиска -->
+    {% if query or family_query %}
+    <form method="get" action="">
+      <!-- Передаем текущую страницу, чтобы вернуться на нее после сброса поиска -->
+      <input type="hidden" name="page1" value="{{ last_page|default_if_none:page_obj.number }}">
+      <button type="submit" name="reset" value="1" class="submit_small" id="btn_cancel">&nbsp;</button>
+    </form>
+    {% endif %}
+  </div>
+  <table class="catalog_table">
+    <thead>
+      <tr>
+        <th>{% trans "Name" %}</th>
+        {% if user.is_authenticated %}
+        <th>&nbsp;</th>
+        {% endif %}
+        <th>{% trans "Latin name" %}</th>
+        <th>{% trans "Family" %}</th>
+        <!-- <th>Spreading</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for plant in plants %}
+        <tr>
+          <td>
+            <a href="{% url 'plant_detail' id=plant.id %}">
+                {{ plant.display_name }}
+            </a>
+          </td>
+          {% if user.is_authenticated %}
+          <td class="td_mixtures">
+            <a href="{% url 'mixtures_list' %}?plant_id={{ plant.id }}" class="img_mixtures">
+              <img src="{% static 'herbalist/images/paper_clip_32.png' %}" alt="">
+            </a>
+          </td>
+          {% endif %}
+          <td>{{ plant.lat }}</td>
+          <!-- <td>{{ plant.family.name }}</td> -->
+          {% if query or family_query %}
+          <td><a href="?q={{ query }}&family={{ plant.family_name }}&last_page={{ last_page }}&page={{ 1 }}">{{ plant.family_name }}</a></td>
+          {% else %}
+          <td><a href="?q={{ query }}&family={{ plant.family_name }}&last_page={{ page_obj.number }}&page={{ 1 }}">{{ plant.family_name }}</a></td>
+          {% endif %}
+          <!-- <td>{{ plant.spreading.name }}</td> -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination_bottom">
+    {% include 'herbalist/pagination.html' %}
+  </div>
+</div>
+{% endblock %}

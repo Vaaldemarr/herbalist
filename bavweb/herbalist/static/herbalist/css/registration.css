@@ -1,0 +1,85 @@
+.content_back {
+    padding: 10px 15px;
+    height: 100%;
+    display: flex;
+    /* justify-content: space-between; */
+    box-sizing: border-box;
+    flex-direction: column;
+    /* border-style: double;
+    border-color: blue; */
+    background-color: antiquewhite;
+}
+
+/* .content_back > h1 {
+    border-style: double;
+    border-color: blueviolet;
+} */
+
+.table_profile {
+    /* box-sizing: border-box; */
+    /* width: 100%; */
+    border-collapse: collapse;
+    /* border-style: solid; */
+}
+
+.table_profile th {
+    text-align: left;
+}
+
+.table_profile td {
+    padding-left: 10px;
+}
+
+.submit_button {
+    margin-top: 10px;
+    font-size: 1.2em;
+    text-align: left;
+    /* height: 30px; */
+    padding: 10px 20px;
+    color: chocolate;
+    background-color: burlywood;
+    border-color: brown;
+    /* border-style: double;
+    border-color: blue; */
+    border-radius: 5px;
+}
+
+.submit_button:hover {
+    background-color: #d99c4d;
+    text-shadow: 
+        -1px -1px 2px rgb(207, 190, 94),  /* Левый верх */
+         2px -2px 1px rgb(111, 79, 19),   /* Правый верх */
+         -2px 2px 4px rgb(111, 60, 19),   /* Левый низ */
+         2px 2px 3px  rgb(65, 24, 9);    /* Правый низ */
+}
+
+.div_profile_header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    /* background-color: blueviolet; */
+}
+
+.profile_header {
+    padding-left: 15px;
+    margin: 0px;
+}
+
+.return_image{
+    width: 78px;
+}
+.return_image:hover {
+    content: url('../images/return-yellow-3.png');
+}
+
+.form-data {
+    /* border-style: double;
+    border-color: blueviolet; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.messages {
+    background-color: rgb(170, 238, 215);
+}

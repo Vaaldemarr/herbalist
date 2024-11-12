@@ -1,0 +1,8 @@
+.selected_image:hover {
+    content: url('../images/boolean_field_32_selecteed.png');
+}
+
+.unselected_image:hover {
+    content: url('../images/boolean_field_32_c_selected.png');
+}
+

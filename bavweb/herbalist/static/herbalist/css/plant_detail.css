@@ -1,0 +1,29 @@
+.detail_content {
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение */
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 1px;
+    /* background-color: aqua; */
+}
+
+.detail_content_texts {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    /* background-color: blue; */
+    flex-grow: 1; /* Занимает всё оставшееся пространство */
+}
+
+
+.img_block {
+    height: 100%;
+    /* background-color: blueviolet; */
+}
+
+#detail_img {
+    width: 384px;
+    /* height: 70%; */
+    /* background-color: cadetblue; */
+
+}

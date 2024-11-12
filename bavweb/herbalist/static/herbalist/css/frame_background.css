@@ -1,0 +1,9 @@
+.content_back {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение */
+    flex-direction: column;
+    padding: 10px 15px;
+    height: 100%;
+    background-color: antiquewhite;
+}

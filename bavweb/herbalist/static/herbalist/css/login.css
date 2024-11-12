@@ -1,0 +1,49 @@
+.leshy:hover {
+    opacity: 0;
+}
+
+.leshy:hover ~ img {
+    content: url('../images/Leshy-2.png');
+  }
+
+#signup_container {
+    margin-top: auto;
+    margin-bottom: 10px;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: center;
+}
+
+#signup {
+    padding: 10px 20px;
+    font-size: 1.4em;
+    color: chocolate;
+    background-color: burlywood;
+    border-color: brown;
+    /* border-style: double;
+    border-color: blue; */
+    border-style: solid;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#signup:hover {
+    background-color: #d99c4d;
+    text-shadow: 
+        -1px -1px 2px rgb(207, 190, 94),  /* Левый верх */
+         2px -2px 1px rgb(111, 79, 19),   /* Правый верх */
+         -2px 2px 4px rgb(111, 60, 19),   /* Левый низ */
+         2px 2px 3px  rgb(65, 24, 9);    /* Правый низ */
+}
+
+
+.form_block {
+    display: flex;
+    flex-direction: row;
+}
+
+.submit_button {
+    display: block;
+    margin: 10px auto 0px auto;
+  }

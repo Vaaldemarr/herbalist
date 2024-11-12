@@ -1,0 +1,42 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/registration.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/edit_profile.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block content %}
+<div class="content_back">
+    <div class="div_profile_header">
+        <a href="{% url 'profile' %}"><img src="{% static 'herbalist/images/return-yellow-2.png' %}" alt="" class="return_image"></a>
+        <h1 class="profile_header">{% trans "Edit profile" %}</h1>
+    </div>
+    <form method="post" class="form-data">
+        {% csrf_token %}
+        <table class="table_profile">
+            {{ form.as_table }}
+            <tr>
+                <th><label></label></th>
+                <td>
+                    <div class="change-pwd-link">
+                        <a href="{% url 'password_change' %}">{% trans "Change password" %}</a>
+                    </div>
+                </td>
+            </tr>    
+        </table>
+
+        <button type="submit" class="submit_button">{% trans "Save changes" %}</button>
+    </form>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

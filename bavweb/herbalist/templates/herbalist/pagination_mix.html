@@ -1,0 +1,29 @@
+<div class="pagination_go">
+  <div class="pagination">
+    <div class="step-links">
+      {% if page_obj.has_previous %}
+        <a href="?current_mix={{ cur_mixture.id }}&plant_id={{ plant_id }}&page=1" class="page-btn" id="btn_first">&nbsp;</a>
+        <a href="?current_mix={{ cur_mixture.id }}&plant_id={{ plant_id }}&page={{ page_obj.previous_page_number }}" class="page-btn" id="btn_rew">&nbsp;</a>
+      {% else %}
+        <a href="#" class="page-btn" id="btn_first_disabled" style="filter: grayscale(100%);">&nbsp;</a>
+        <a href="#" class="page-btn" id="btn_rew_disabled">&nbsp;</a>
+      {% endif %}
+      <span class="current-page">{{ page_obj.number }}</span>
+      {% if page_obj.has_next %}
+        <a href="?current_mix={{ cur_mixture.id }}&plant_id={{ plant_id }}&page={{ page_obj.next_page_number }}" class="page-btn" id="btn_next">&nbsp;</a>
+        <a href="?current_mix={{ cur_mixture.id }}&plant_id={{ plant_id }}&page={{ page_obj.paginator.num_pages }}" class="page-btn" id="btn_last">&nbsp;</a>
+      {% else %}
+      <a href="#" class="page-btn" id="btn_next_disabled">&nbsp;</a>
+      <a href="#" class="page-btn" id="btn_last_disabled">&nbsp;</a>
+    {% endif %}
+    </div>
+  </div>
+
+  <form method="get" action="" id="form_go">
+    <input type="hidden" name="current_mix" value="{{ cur_mixture.id }}">
+    <input type="hidden" name="plant_id" value="{{ plant_id }}">
+    <input type="number" id="page" name="page" min="1" max="{{ page_obj.paginator.num_pages }}" required>
+    <button type="submit" class="submit_small" id="btn_page">&nbsp;</button>
+  </form>
+      
+</div>

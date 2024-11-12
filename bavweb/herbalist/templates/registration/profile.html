@@ -1,0 +1,68 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/registration.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/userprofile.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block content %}
+<div class="content_back">
+    <div class="div_profile_header">
+        <!-- <a href="{% url 'edit_profile' %}"><img src="{% static 'herbalist/images/return-yellow-2.png' %}" alt="" class="return_image"></a> -->
+        <img src="{% static 'herbalist/images/leshy-5.png' %}" class="leshy" alt="">
+        <h1 class="profile_header">{% trans "Welcome" %}, <a href="edit_profile">{{ user.username }}</a>!</h1>
+        <img src="" class="other_leshy" alt="">
+        <div class="user_extensions">
+            <a href="{% url 'mixtures_list' %}" class="bag_container">
+                <img src="{% static 'herbalist/images/orange-bag-3.png' %}" alt="" class="mixtures_bag">
+                <div id="bag_caption">{% trans "Collections" %}</div>
+            </a>
+        </div>
+   </div>
+    <div class="user_settings_block">
+        <div class="user_block">
+            <ul>
+                <li><strong>{% trans "First Name" %}:</strong> {{ user.first_name }}</li>
+                <li><strong>{% trans "Last Name" %}:</strong> {{ user.last_name }}</li>
+                <li><strong>{% trans "Email" %}:</strong> {{ user.email }}</li>
+                <li><strong>{% trans "Date Joined" %}:</strong> {{ user.date_joined }}</li>
+            </ul>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="submit_button">{% trans "Logout" %}</button>
+            </form>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="settings_block">
+                <table class="table_profile">
+                {{ form.as_table }}
+                </table>
+            </div>
+            {% if form.errors %}
+            <div class="form-errors">
+                <p>There are some errors in your form:</p>
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                        <li>{{ field }}: {{ errors|join:", " }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <button type="submit" class="submit_button">{% trans "Save Settings" %}</button>
+        </form>
+    </div>
+    <!-- Кнопка для выхода -->
+    <!-- <a href="{% url 'logout' %}" class="submit_button">Logout</a> -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

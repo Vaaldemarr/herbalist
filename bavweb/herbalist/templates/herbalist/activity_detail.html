@@ -1,0 +1,64 @@
+{% extends 'herbalist/base.html' %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/shelf-caption.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/frame_background.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/buttons.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/item_detail.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/list_page.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/pagination.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/short_pagination.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block shelf %}
+<div class="plants_collections" id="activity">{{ activity_name }}</div>
+<div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        {% if message.tags == "error" or message.tags == "info" %}
+            <li class="error">{{ message }}</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+{% block content %}
+<div class="content_back">
+    <div class="detail_content">
+        <!-- Радиокнопки -->
+        <input type="radio" id="tab1" name="tabs" value="Tab1" {% if active_tab == "Tab1" %}checked{% endif %}>
+        <input type="radio" id="tab2" name="tabs" value="Tab2" {% if active_tab == "Tab2" %}checked{% endif %}>
+        <input type="radio" id="tab3" name="tabs" value="Tab3" {% if active_tab == "Tab3" %}checked{% endif %}>
+        
+        <!-- Метки для переключения вкладок -->
+        <div class="tab-labels">
+            <label for="tab1">{{ tab_captions.0 }}</label>
+            <label for="tab2">{{ tab_captions.1 }}</label>
+            <label for="tab3">{{ tab_captions.2 }}</label>
+        </div>
+
+        <!-- Контент вкладок -->
+        <div class="tab-content">
+            <div id="content1">
+                <div class="detail_content_texts">
+                    <h1>{{ activity_name }}</h1>
+                </div>
+            </div>
+            <div id="content2">
+                <div class="detail_content_texts">
+                    {% include 'herbalist/item_tab.html' with url_text='compounds_detail' my_q=q1 other_q=q2 pg=tab2 %}
+                </div>
+            </div>
+            <div id="content3">
+                <div class="detail_content_texts">
+                    {% include 'herbalist/item_tab.html' with url_text='plant_detail' my_q=q2 other_q=q1 pg=tab3 %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

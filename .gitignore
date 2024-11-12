@@ -1,0 +1,5 @@
+.env
+bavweb/bav_dj.db
+bavweb/db.sqlite3
+.vscode/
+.venv/

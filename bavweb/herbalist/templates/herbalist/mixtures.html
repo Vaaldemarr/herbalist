@@ -1,0 +1,146 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/frame_background.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/buttons.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/mixtures_list.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/shelf-caption.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/list_page.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/short_pagination.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'herbalist/css/list_page.css' %}"> -->
+<link rel="stylesheet" href="{% static 'herbalist/css/pagination.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block shelf %}
+<div class="plants_collections" id="mixtures">{% trans "Collections of plants" %}</div>
+<div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        {% if message.tags == "error" or message.tags == "info" %}
+            <li class="error">{{ message }}</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
+{% block content %}
+<div class="content_back">
+    <div class="mixtures_block">
+        <div class="mixtures">
+            <form method="post" action="{% url 'mixtures_list' %}" class="form_create">
+                {% csrf_token %}
+                <div class="form-container">
+                    <input type="text" id="mixture_name" name="mixture_name" required>
+                    <button type="submit" name="create_mixture" class="submit_small" formaction="{% url 'mixtures_list' %}?plant_id={{ plant_id }}">{% trans "Create" %}</button>
+                </div>
+            </form>
+            <form method="post" action="{% url 'mixtures_list' %}" class="form_mixtures">
+                {% csrf_token %}
+                <table class="catalog_table">
+                    <thead>
+                        <th>{% trans "Collection" %}</th>
+                        {% if request.session.selected_plant_id %}
+                        <th></th>
+                        {% endif %}
+                        <th></th>
+                    </thead>
+                    {% for mixture in page_obj %}
+                    <tr>
+                        {% if cur_mixture and cur_mixture.id == mixture.id %}
+                        <td id="selected_mixture">
+                        {% else %}
+                        <td>
+                        {% endif %}
+                            <a href="?current_mix={{ mixture.id }}&plant_id={{ plant_id }}&page={{ page_obj.number }}">{{ mixture.name }}</a>
+                        </td>
+                        {% if request.session.selected_plant_id %}
+                        <td>
+                            <a class="img_mixtures" href="?plant_id={{ plant_id }}&page={{ page_obj.number }}&mixture_id={{ mixture.id }}"><img src="{% static 'herbalist/images/paper_clip_32.png' %}" alt=""></a>
+                            <!-- <button type="submit" name="mixture_id" class="submit_small" id="btn_add_to_list" value="{{ mixture.id }}" formaction="{% url 'mixtures_list' %}?plant_id={{ plant_id }}&page={{ page_obj.number }}">&nbsp;</button> -->
+                        </td>
+                        {% endif %}
+                        <td>
+                            <button type="submit" name="delete_mixture" value="{{ mixture.id }}" class="submit_small" id="btn_cancel" formaction="{% url 'mixtures_list' %}?plant_id={{ plant_id }}&page={{ page_obj.number }}">&nbsp;</button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">{% trans "Empty" %}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </form>
+            {% if request.session.selected_plant_id %}
+            <form method="post" action="{% url 'mixtures_list' %}">
+                {% csrf_token %}
+                <strong>{% trans "Plant" %}: </strong><a href="{% url 'plant_detail' id=plant.id %}">{{ plant_name }}</a>
+                <button type="submit" name="clear_curent_plant" value="{{ request.session.selected_plant_id }}" class="submit_small" id="btn_cancel" formaction="{% url 'mixtures_list' %}?plant_id={{ plant_id }}&page={{ page_obj.number }}&plants_page={{ plants_page_obj.number }}">&nbsp;</button>
+            </form>
+            {% endif %}
+            <div class="pagination_bottom">
+                <!-- {% include 'herbalist/pagination_mix.html' with page_obj=page_obj %} -->
+                {% include 'herbalist/pagination_mix.html' %}
+            </div>
+
+        </div>
+        <div class="plants">
+            {% if cur_mixture %}
+                <form action="" method="post" class="form_plants">
+                    {% csrf_token %}
+                    <table class="two_tables">
+                        <thead>
+                            <th colspan="2"><a href="{% url 'mixture_detail' id=cur_mixture.id %}" class="mixture_detail_link"><div>{{ cur_mixture.name }}</div>&nbsp;<img src="{% static 'herbalist/images/book_32.png' %}" alt="" class="mixture_book"></a></th>
+                        </thead>
+                        <tr>
+                            <td>
+                                <table class="catalog_table">
+                                    {% for item in plants_page_obj %}
+                                        {% if forloop.counter|divisibleby:2 == False %}
+                                            <tr>
+                                                <td>
+                                                    <a href="{% url 'plant_detail' id=item.plant_id %}">{{ item.plant.display_name }}</a>
+                                                </td>
+                                                <td>
+                                                    <button type="submit" name="delete_plant" value="{{ item.plant_id }}" class="submit_small" id="btn_cancel" formaction="{% url 'mixtures_list' %}?plant_id={{ plant_id }}&page={{ page_obj.number }}&plants_page={{ plants_page_obj.number }}">&nbsp;</button>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    {% empty %}
+                                    <tr>
+                                        <td>{% trans "Empty" %}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </td>
+                            <td>
+                                <table class="catalog_table">
+                                    {% for item in plants_page_obj %}
+                                        {% if forloop.counter|divisibleby:2 %}
+                                            <tr>
+                                                <td>
+                                                    <a href="{% url 'plant_detail' id=item.plant_id %}">{{ item.plant.display_name }}</a>
+                                                </td>
+                                                <td>
+                                                    <button type="submit" name="delete_plant" value="{{ item.plant_id }}" class="submit_small" id="btn_cancel" formaction="{% url 'mixtures_list' %}?plant_id={{ plant_id }}&page={{ page_obj.number }}&plants_page={{ plants_page_obj.number }}">&nbsp;</button>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <div class="pagination_bottom">
+                    {% include 'herbalist/pagination_mix2.html' with page_obj=plants_page_obj left_page=page_obj.number %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

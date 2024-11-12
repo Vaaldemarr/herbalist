@@ -1,0 +1,33 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/registration.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/signup.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block content %}
+<div class="content_back">
+    <div class="div_profile_header">
+        <img src="{% static 'herbalist/images/leshy-3.png' %}" class="leshy" alt="">
+        <h1 class="profile_header">{% trans "Sign up" %}</h1>
+        <img src="" class="other_leshy" alt="">
+    </div>
+
+    <form method="post">
+        {% csrf_token %}  <!-- Токен защиты от CSRF -->
+        {{ form.as_p }}  <!-- Отображаем поля формы -->
+        <button type="submit" class="submit_button">{% trans "Register" %}</button>
+    </form>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

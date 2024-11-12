@@ -1,0 +1,62 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/frame_background.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/buttons.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/list_page.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/pagination.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block content %}
+<div class="content_back">
+  <div class="search_block">
+    <form method="get" action="" class="search_form">
+      {% if query %}
+      <input type="hidden" name="last_page" value="{{ last_page }}">
+      {% else %}
+      <input type="hidden" name="last_page" value="{{ page_obj.number }}">
+      {% endif %}
+      <input type="text" name="q" placeholder="{% trans 'Search group' %}" value="{{ query|default_if_none:'' }}">
+      <button type="submit" class="submit_small" id="btn_search">&nbsp;</button>
+    </form>
+    <!-- Кнопка для сброса поиска -->
+    {% if query %}
+    <form method="get" action="">
+      <!-- Передаем текущую страницу, чтобы вернуться на нее после сброса поиска -->
+      <input type="hidden" name="page1" value="{{ last_page|default_if_none:page_obj.number }}">
+      <button type="submit" name="reset" value="1" class="submit_small" id="btn_cancel">&nbsp;</button>
+    </form>
+    {% endif %}
+  </div>
+  <table class="catalog_table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <!-- <th>Russian Name</th>
+        <th>Latin name</th> -->
+        <!-- <th>Spreading</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for compounds_group in page_obj %}
+        <tr>
+          <td>
+            <a href="{% url 'compounds_group_detail' id=compounds_group.id %}">
+                {{ compounds_group.display_name }}
+            </a>
+          </td>
+          <!-- <td>{{ compounds_group.rus }}</td>
+          <td>{{ compounds_group.eng }}</td> -->
+          <!-- <td>{{ plant.spreading.name }}</td> -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination_bottom">
+    {% include 'herbalist/pagination.html' %}
+  </div>
+</div>
+{% endblock %}

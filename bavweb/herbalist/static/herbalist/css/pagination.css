@@ -1,0 +1,50 @@
+.pagination_go {
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение */
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    /* background-color: aqua; */
+}
+
+.pagination {
+    flex-grow: 1;
+    /* border-style: solid; */
+    /* background-color: blueviolet; */
+    /* padding-top: 20px; */
+    /* padding-bottom: 20px; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+/* .step-links { */
+    /* padding-bottom: 25px; */
+    /* margin-bottom: 25px; */
+    /* background-color: yellow; */
+/* } */
+
+.current-page {
+    font-weight: bold;
+    border-style: solid;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border-color: brown;
+    background-color: bisque;
+    /* background-color: green; */
+}
+
+.page-link {
+    border-style: solid;
+    border-color: brown;
+    background-color: aliceblue;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* #form_go { */
+    /* display: inline-block;
+    margin-left: auto;  */
+/* } */

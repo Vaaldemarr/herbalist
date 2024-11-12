@@ -1,0 +1,26 @@
+{% extends 'herbalist/base.html' %}
+{% load i18n %}
+{% block substyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'herbalist/css/frame_background.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/buttons.css' %}">
+<link rel="stylesheet" href="{% static 'herbalist/css/plant_detail.css' %}">
+{% endblock %}
+{% block select_language %}
+{% include 'herbalist/select_language.html' with id=lng.id lang=lng.language url_text=lng.url url_params=lng.params %}
+{% endblock %}
+{% block content %}
+<div class="content_back">
+    <div class="detail_content">
+        <div class="detail_content_texts">
+            <h1>{{ compounds_group_name }}</h1>
+            <p><a href="{% url 'compounds' %}?g={{ compounds_group_name }}">{% trans "Compounds" %}</a></p>
+        </div>
+        <div class="img_block">
+            <img src="{% static 'herbalist/images/Leshy-512.jpg' %}" alt="" id="detail_img">
+        </div>
+    </div>
+    <!-- <p><strong>Spreading:</strong> {{ plant.spreading }}</p> -->
+    <!-- <a href="{% url 'plants' %}">Back to Plant List</a> -->
+</div>
+{% endblock %}
